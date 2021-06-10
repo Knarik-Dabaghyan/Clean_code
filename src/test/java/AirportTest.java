@@ -1,15 +1,15 @@
 import Planes.ExperimentalPlane;
-import models.ClassificationLevel;
-import models.ExperimentalTypes;
-import models.MilitaryType;
-import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 import Planes.MilitaryPlane;
 import Planes.PassengerPlane;
 import Planes.Plane;
-import org.testng.asserts.Assertion;
+import models.ClassificationLevel;
+import models.ExperimentalTypes;
+import models.MilitaryType;
+import models.Planes;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,14 +25,14 @@ public class AirportTest {
             new PassengerPlane("Embraer 190", 870, 8100, 30800, 64),
             new PassengerPlane("Sukhoi Superjet 100", 870, 11500, 50500, 140),
             new PassengerPlane("Bombardier CS300", 920, 11000, 60700, 196),
-            new MilitaryPlane("B-1B Lancer", 1050, 21000, 80000, MilitaryType.BOMBER),
-            new MilitaryPlane("B-2 Spirit", 1030, 22000, 70000, MilitaryType.BOMBER),
-            new MilitaryPlane("B-52 Stratofortress", 1000, 20000, 80000, MilitaryType.BOMBER),
-            new MilitaryPlane("F-15", 1500, 12000, 10000, MilitaryType.FIGHTER),
-            new MilitaryPlane("F-22", 1550, 13000, 11000, MilitaryType.FIGHTER),
-            new MilitaryPlane("C-130 Hercules", 650, 5000, 110000, MilitaryType.TRANSPORT),
-            new ExperimentalPlane("Bell X-14", 277, 482, 500, ExperimentalTypes.HIGH_ALTITUDE, ClassificationLevel.SECRET),
-            new ExperimentalPlane("Ryan X-13 Vertijet", 560, 307, 500, ExperimentalTypes.VTOL, ClassificationLevel.TOP_SECRET)
+            new MilitaryPlane(Planes.B_1B_LANCER, MilitaryType.BOMBER),
+            new MilitaryPlane(Planes.B_2_SPIRIT, MilitaryType.BOMBER),
+            new MilitaryPlane(Planes.B_52_STRATOFORTRESS, MilitaryType.BOMBER),
+            new MilitaryPlane(Planes.F_15, MilitaryType.FIGHTER),
+            new MilitaryPlane(Planes.F_22, MilitaryType.FIGHTER),
+            new MilitaryPlane(Planes.C_130_HERCULES, MilitaryType.TRANSPORT),
+            new ExperimentalPlane(Planes.BELL_X_14, ExperimentalTypes.HIGH_ALTITUDE, ClassificationLevel.SECRET),
+            new ExperimentalPlane(Planes.RYAN_X_13_VERTIJET, ExperimentalTypes.VTOL, ClassificationLevel.TOP_SECRET)
     );
 
     SoftAssert softAssert = new SoftAssert();
@@ -47,7 +47,7 @@ public class AirportTest {
     public void testGetTransportMilitaryPlanes() {
         List<MilitaryPlane> transportMilitaryPlanes = airport.getTransportMilitaryPlanes();
         for (MilitaryPlane militaryPlane : transportMilitaryPlanes) {
-          assertEquals(militaryPlane.getType(), MilitaryType.TRANSPORT);
+            assertEquals(militaryPlane.getType(), MilitaryType.TRANSPORT);
         }
     }
 
